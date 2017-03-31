@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion">
+<html class="theme-next muse use-motion">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -99,7 +99,7 @@
 <script type="text/javascript" id="hexo.configuration">
   var NexT = window.NexT || {};
   var CONFIG = {
-    scheme: 'Mist',
+    scheme: 'Muse',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
     motion: true,
@@ -180,16 +180,6 @@
         </li>
       
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
@@ -248,8 +238,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/10/14/select/" itemprop="url">
-                  select函数使用
+                <a class="post-title-link" href="/2017/03/31/字节对齐/" itemprop="url">
+                  C++字节对齐
                 </a>
               
             
@@ -262,8 +252,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-14T20:00:33+08:00" content="2016-10-14">
-              2016-10-14
+            <time itemprop="dateCreated" datetime="2017-03-31T19:30:00+08:00" content="2017-03-31">
+              2017-03-31
             </time>
           </span>
 
@@ -276,8 +266,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Linux网络编程/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux网络编程</span>
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C++</span>
                   </a>
                 </span>
 
@@ -311,260 +301,47 @@
       
         
           
-            <h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#include &lt;sys/select.h&gt;</div><div class="line">#include &lt;sys/time.h&gt;</div><div class="line"></div><div class="line">int select(int maxfdpl, fd_set *readset, fd_set *writeset, fd_set *exceptset,</div><div class="line">           const struct timeval *timeout);</div></pre></td></tr></table></figure>
-<p>其中各个参数意义为:</p>
-<ul>
-<li>maxfdpl: 指定待测试的描述符的个数，它的值应当为待测试的最大描述符+1</li>
-<li>readset:  指定我们要让内核测试读操作的描述符;</li>
-<li>writeset: 指定我们要让内核测试写操作的描述符;</li>
-<li>exceptset: 指定测试异常条件描述符;</li>
-<li>timeout: 如其字面意思它告知kernel等待指定描述符中任何一个就绪可花多少时间.<br>值得注意的是在头文件<sys select.h="">中定义了FD_SETSIZE常量，它是数据类型fd_set中的描述符总数，通常是1024，也就是说select函数支持的描述符的数量小于等于FD_SETSIZE.还有maxfdpl的值并不是文件描述符的个数，而是记录的描述符的最大值，比如说我们如果分别打开了文件描述符1,4,5,那么在调用select函数时应当设置maxfdpl为6.</sys></li>
-</ul>
-<h1 id="select调用过程"><a href="#select调用过程" class="headerlink" title="select调用过程"></a>select调用过程</h1><p><img src="http://of11f4768.bkt.clouddn.com/select_progress.png" alt="select progress"></p>
-<ol>
-<li>使用copy_from_user从用户空间复制fd_set到kernel空间</li>
-<li>注册回调函数__pollwait</li>
-<li>遍历所有fd，调用其对应的poll方法，比如说对于socket，poll方法是sock_poll</li>
-<li>__pollwait的主要工作是把current(当前进程)挂载到设备的等待队列中，不同的设备有不同的等待队列。当设备收到一条消息后，会唤醒current</li>
-<li>poll方法返回时会返回一个描述读写操作是否就绪的mask，根据这个mask给fd_set赋值</li>
-<li>如果遍历完所有的fd，还没有返回一个可读写的mask，那么就让调用select的进程(current)进入睡眠。当设备驱动发生自身资源可读写时，会唤醒等待队列上的进程。如果超过一定的timeout，还没有唤醒，则调用select的进程会被重新唤醒并重新遍历fd。</li>
-<li>把fd_set从kernel空间复制到用户空间</li>
-</ol>
-<h1 id="DEMO"><a href="#DEMO" class="headerlink" title="DEMO"></a>DEMO</h1><p>server.c<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div></pre></td><td class="code"><pre><div class="line">#include &lt;sys/types.h&gt;</div><div class="line">#include &lt;sys/socket.h&gt;</div><div class="line">#include &lt;stdio.h&gt;</div><div class="line">#include &lt;stdlib.h&gt;</div><div class="line">#include &lt;netinet/in.h&gt;</div><div class="line">#include &lt;sys/time.h&gt;</div><div class="line">#include &lt;sys/ioctl.h&gt;</div><div class="line">#include &lt;unistd.h&gt;</div><div class="line"></div><div class="line">int main(void)</div><div class="line">&#123;</div><div class="line">  int server_sockfd, client_sockfd;</div><div class="line">  int server_len, client_len;</div><div class="line">  struct sockaddr_in server_addr;</div><div class="line">  struct sockaddr_in client_addr;</div><div class="line">  int result;</div><div class="line">  fd_set readfds, tempfds;</div><div class="line"></div><div class="line">  //创建服务器socket</div><div class="line">  server_sockfd = socket(AF_INET, SOCK_STREAM, 0);</div><div class="line">  server_addr.sin_family = AF_INET;</div><div class="line">  server_addr.sin_addr.s_addr = htonl(INADDR_ANY);</div><div class="line">  server_addr.sin_port = htons(9734);</div><div class="line"></div><div class="line">  server_len = sizeof(server_addr);</div><div class="line"></div><div class="line">  // 绑定并监听端口</div><div class="line">  bind(server_sockfd, (struct sockaddr*)&amp;server_addr, server_len);</div><div class="line">  listen(server_sockfd, 5);</div><div class="line"></div><div class="line">  FD_ZERO(&amp;readfds);</div><div class="line">  // 将server_sockfd加入到readfds中</div><div class="line">  FD_SET(server_sockfd, &amp;readfds);</div><div class="line"></div><div class="line">  for (;;)</div><div class="line">  &#123;</div><div class="line">    char ch;</div><div class="line">    int fd;</div><div class="line">    int nread;</div><div class="line">    tempfds = readfds;</div><div class="line">    printf(&quot;server waiting\n&quot;);</div><div class="line"></div><div class="line">    // 调用select函数，使本进程阻塞并检测tempfds种文件描述符的变动</div><div class="line">    result = select(FD_SETSIZE, &amp;tempfds, (fd_set*)0, (fd_set*)0, (struct timeval*)0);</div><div class="line">    if (result &lt; 1)</div><div class="line">    &#123;</div><div class="line">      perror(&quot;server5&quot;);</div><div class="line">      exit(1);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    for (fd = 0; fd &lt; FD_SETSIZE; fd++)</div><div class="line">    &#123;</div><div class="line">      if (FD_ISSET (fd, &amp;tempfds)) //如果找到相应的文件描述符</div><div class="line">      &#123;</div><div class="line">        if (fd == server_sockfd) //如果发生变动的是服务器的socket,说明是由客户端连接</div><div class="line">        &#123;</div><div class="line">          client_len = sizeof(client_addr);</div><div class="line">          client_sockfd = accept(server_sockfd, (struct sockaddr*)&amp;client_addr, &amp;client_len);</div><div class="line">          FD_SET(client_sockfd, &amp;readfds); //将客户端加入readfds</div><div class="line">          printf(&quot;adding client on fd %d\n&quot;, client_sockfd);</div><div class="line">        &#125;</div><div class="line">        else</div><div class="line">        &#123;</div><div class="line">          // 取得的数据量赋给nread</div><div class="line">          ioctl(fd, FIONREAD, &amp;nread);</div><div class="line"></div><div class="line">          // 客户端数据请求完毕，关闭socket，移除相应的文件描述符</div><div class="line">          if (nread == 0)</div><div class="line">          &#123;</div><div class="line">            close(fd);</div><div class="line">            FD_CLR(fd, &amp;readfds);</div><div class="line">            printf(&quot;removing client on fd %d&quot;, fd);</div><div class="line">          &#125;</div><div class="line">          else</div><div class="line">          &#123;</div><div class="line">            read(fd, &amp;ch, 1);</div><div class="line">            sleep(5);</div><div class="line">            printf(&quot;serving client on fd %d&quot;, fd);</div><div class="line">            ch++;</div><div class="line">            write(fd, &amp;ch, 1);</div><div class="line">          &#125;</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125; // for (;;)</div><div class="line"></div><div class="line">  return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>client.c<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">#include &lt;sys/types.h&gt;</div><div class="line">#include &lt;sys/socket.h&gt;</div><div class="line">#include &lt;stdio.h&gt;</div><div class="line">#include &lt;stdlib.h&gt;</div><div class="line">#include &lt;netinet/in.h&gt;</div><div class="line">#include &lt;arpa/inet.h&gt;</div><div class="line">#include &lt;unistd.h&gt;</div><div class="line"></div><div class="line">int main(void)</div><div class="line">&#123;</div><div class="line">  int client_sockfd;</div><div class="line">  int len;</div><div class="line">  struct sockaddr_in address;</div><div class="line">  int result;</div><div class="line">  char ch = &apos;A&apos;;</div><div class="line"></div><div class="line">  client_sockfd = socket(AF_INET, SOCK_STREAM, 0);</div><div class="line"></div><div class="line">  address.sin_family = AF_INET;</div><div class="line">  address.sin_addr.s_addr = inet_addr(&quot;127.0.0.1&quot;);</div><div class="line">  address.sin_port = htons(9734);</div><div class="line"></div><div class="line">  len = sizeof(address);</div><div class="line"></div><div class="line">  result = connect(client_sockfd, (struct sockaddr*)&amp;address, len);</div><div class="line"></div><div class="line">  if (result == -1)</div><div class="line">  &#123;</div><div class="line">    perror(&quot;oops: client2&quot;);</div><div class="line">    exit(1);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  write(client_sockfd, &amp;ch, 1);</div><div class="line">  read(client_sockfd, &amp;ch, 1);</div><div class="line">  printf(&quot;char from server = %c\n&quot;, ch);</div><div class="line">  close(client_sockfd);</div><div class="line">  return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>从上述代码可以看出，当socket有变动时，我们依然需要将所有的文件描述符全部遍历一次，当文件描述符较多时开销很大，而且，每次调用select时<strong>都</strong>需要把描述符集合从用户复制到kernel，描述符较多时这也是非常大的开销，最后，select支持的描述符数量始终收到FD_SETSIZE的限制。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/14/IO_model/" itemprop="url">
-                  I/O模型
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-14T16:31:20+08:00" content="2016-10-14">
-              2016-10-14
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Linux网络编程/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux网络编程</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="I-O模型"><a href="#I-O模型" class="headerlink" title="I/O模型"></a>I/O模型</h1><p>Linux下有5种I/O模型：</p>
-<ul>
-<li>阻塞式I/O</li>
-<li>非阻塞式I/O</li>
-<li>I/O复用</li>
-<li>信号驱动式I/O</li>
-<li>异步I/O<br>本文主要对阻塞式，非阻塞式，I/O复用和异步I/O进行说明。</li>
-</ul>
-<h2 id="阻塞式I-O"><a href="#阻塞式I-O" class="headerlink" title="阻塞式I/O"></a>阻塞式I/O</h2><p>阻塞式I/O模型式最流行的I/O模型。在默认情形下，所有的套接字都是阻塞的，操作流程可以参照下图<br><img src="http://of11f4768.bkt.clouddn.com/blockingIO.png" alt="blockingIO"><br>在这个模型里，当用户进程调用了recvfrom这个系统调用时，kernel就进入了no datagram ready阶段,之后用户进程会被阻塞，直至kernel进入了datagram ready阶段，就将datagram从kernel种拷贝到用户内存，然后由用户进程处理数据。由此可见，阻塞式I/O的特点是在I/O执行的<strong>两个阶段都被阻塞</strong>。</p>
-<h2 id="非阻塞式I-O"><a href="#非阻塞式I-O" class="headerlink" title="非阻塞式I/O"></a>非阻塞式I/O</h2><p>在非阻塞式I/O中，通常会是以下流程<br><img src="http://of11f4768.bkt.clouddn.com/nonblockingIO.png" alt="nonblockingIO"><br>在这个模型中，当用户进程调用了recvfrom这个系统调用后，kernel会检查是否由datagram准备，若无datagram，则会返回error。也就是说，用户进程调用系统调用后会马上得到返回结果，若是这个返回结果是error，则用户进程就可以判断还没有数据准备好，可以继续调用recvfrom直到获取到datagram。由此可见，非阻塞式I/O式通过<strong>不断询问</strong>kernel是否准备好datagram。</p>
-<h2 id="I-O复用"><a href="#I-O复用" class="headerlink" title="I/O复用"></a>I/O复用</h2><p>通常我们所说的select，poll都是I/O复用，也被称为event driven IO。当我们调用select和poll时，只会阻塞在这两个系统调用的某一个之上，而不是阻塞在真正的I/O系统调用上。如下是I/O复用模型<br><img src="http://of11f4768.bkt.clouddn.com/multiplexingIO.png" alt="nonblockingIO"><br>在这个模型中，当用户进程调用了select后，整个进程就会被阻塞，之后kernel会监视所有由select负责的socket，当其中任何一个socket的datagram准备完成时，select就会返回，将数据从kernel中复制到用户进程。事实上，select相比于阻塞式I/O并不显得有优势，事实上由于使用select需要2个系统调用会稍有劣势，不过其优势在于可以等待多个描述符就绪。由此可见，I/O复用的特点主要在于可以<strong>等待多个描述符</strong>。</p>
-<h2 id="信号驱动式I-O"><a href="#信号驱动式I-O" class="headerlink" title="信号驱动式I/O"></a>信号驱动式I/O</h2><p>利用Linux的signal机制，在用户进程调用相应的系统调用后，kernel就会在datagram准备完成后提醒用户开始读取datagram。如下所示<br><img src="http://of11f4768.bkt.clouddn.com/signal-drivenIO.png" alt="signal-drivenIO"><br>由此可见，信号驱动式I/O的优势在于等待datagram到达期间进程不会被阻塞，只需要等待来自信号处理函数的通知就可以了。</p>
-<h2 id="异步I-O"><a href="#异步I-O" class="headerlink" title="异步I/O"></a>异步I/O</h2><p>异步I/O由POSIX规范定义。通常，这些函数的工作机制是:告知kernel启动某个操作，并让内核在整个操作完成后通知调用者。具体流程见下图<br><img src="http://of11f4768.bkt.clouddn.com/asynchronousIO.png" alt="asynchronousIO"><br>在这个模型中，用户进程在调用aio_read可以去处理其他操作，而kernel在收到aio_read后会立即返回，当datagram准备完成后就通知进程，并将数据复制到用户进程。异步I/O和信号驱动式I/O之间的区别在于:异步I/O是由kernel通知用户进程何时I/O操作完成，而信号驱动式I/O则是通知用户何时进行I/O操作。</p>
-<h1 id="各种I-O模型的比较"><a href="#各种I-O模型的比较" class="headerlink" title="各种I/O模型的比较"></a>各种I/O模型的比较</h1><h2 id="同步I-O和异步I-O的对比"><a href="#同步I-O和异步I-O的对比" class="headerlink" title="同步I/O和异步I/O的对比"></a>同步I/O和异步I/O的对比</h2><p>首先必须要清楚同步I/O和异步I/O的区别，在POSIX中有如此定义:</p>
-<ul>
-<li>同步I/O操作导致请求进程阻塞，直到I/O操作完成</li>
-<li>异步I/O操作不到之请求进程阻塞<br>显然，根据上述定义，前四种模型:阻塞式I/O，非阻塞式I/O，I/O复用，信号驱动式I/O都是同步I/O，因为其种真正的I/O操作(recvfrom)都会阻塞进程。<h2 id="5种I-O模型的对比"><a href="#5种I-O模型的对比" class="headerlink" title="5种I/O模型的对比"></a>5种I/O模型的对比</h2><img src="http://of11f4768.bkt.clouddn.com/compare.png" alt="compare"></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/14/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-14T13:06:56+08:00" content="2016-10-14">
-              2016-10-14
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+            <h3 id="C-字节对齐"><a href="#C-字节对齐" class="headerlink" title="C++字节对齐"></a>C++字节对齐</h3><h5 id="1-案例"><a href="#1-案例" class="headerlink" title="1.案例"></a>1.案例</h5><p>有如下代码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">#include &lt;iostream&gt;</div><div class="line"></div><div class="line">struct A &#123;</div><div class="line">	int a;</div><div class="line">	char b;</div><div class="line">	short c;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">struct B &#123;</div><div class="line">	char a;</div><div class="line">	int b;</div><div class="line">	short c;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">int main(void)</div><div class="line">&#123;</div><div class="line">	std::cout &lt;&lt; &quot;sizeof(A) = &quot; &lt;&lt; sizeof(A) &lt;&lt; std::endl</div><div class="line">			  &lt;&lt; &quot;sizeof(B) = &quot; &lt;&lt; sizeof(B) &lt;&lt; std::endl;</div><div class="line">	return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>struct A和struct B有着相同的元素,按理来说应当sizeof(A) == sizeof(B),然而,并非如此,在我的机器上得到的输出结果是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sizeof(A) = 8</div><div class="line">sizeof(B) = 12</div></pre></td></tr></table></figure></p>
+<p>造成这种现象的原因就是字节对齐.</p>
+<h5 id="2-使用字节对齐的目的"><a href="#2-使用字节对齐的目的" class="headerlink" title="2. 使用字节对齐的目的"></a>2. 使用字节对齐的目的</h5><p>简单来说,使用字节对齐目的是提高存取效率.字节是内存空间分配的最小单位,在程序中,我们定义的变量可以放在任何位置.不同架构的CPU在访问特定类型的变量时是有迹可循的,比如有的CPU在访问int型变量时,会从偶数地址开始读取.这样只需要读一次就可以读出int型变量的值.</p>
+<h5 id="3-字节对齐的规则"><a href="#3-字节对齐的规则" class="headerlink" title="3. 字节对齐的规则"></a>3. 字节对齐的规则</h5><p>编译器对字节对齐处理有一定的规则,部分特别的编译器会采用更加特别的方式字节对齐,以下不做讨论.<br>a.关于数据类型自身的对其值,不同类型有不同的对其值</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th style="text-align:center">对其值(字节)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>char</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td>short</td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td>int</td>
+<td style="text-align:center">4</td>
+</tr>
+<tr>
+<td>float</td>
+<td style="text-align:center">4</td>
+</tr>
+<tr>
+<td>double</td>
+<td style="text-align:center">4</td>
+</tr>
+</tbody>
+</table>
+<p> b. 类、结构体的自身对齐字节值.对于结构体类型与类对象的对齐原则:使用成员当中最大的对齐字节来对齐,比如在struct A中,int a的对齐字节为4,比char,short都大,所以A的对齐字节为4<br> c. 指定对齐字节值,这里是指使用#pragma pack(n)来对接下来的对其值进行手动设置<br> d. 类、结构体的有效对齐字节值.有效对齐字节 = min(类/结构体/成员自身对齐字节值, 指定对齐字节值).有效对齐字节值决定了数据的存放方式,sizeof运算符就是根据有效对其值来计算成员大小的.简单来说,有效对齐就是要求数据成员存放的地址值能被有效对其值整除,即:地址值%有效对其值=0.</p>
+<h5 id="4-分析案例代码"><a href="#4-分析案例代码" class="headerlink" title="4. 分析案例代码"></a>4. 分析案例代码</h5><p>首先<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">struct A &#123;</div><div class="line">	int a;</div><div class="line">	char b;</div><div class="line">	short c;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>为了方便说明,假设起始地址为0x0000,使用默认的对齐字节值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">1. 根据规则b,A自身的对齐值为int型的对齐值4</div><div class="line">2. 根据规则d,由于没有设置对其值,因此有效对其值为4</div><div class="line">3. int a的有效对齐值为min(4,4),由于0x0000%4=0,所以a的地址段为[0x0000, 0x0003]</div><div class="line">4. char b的有效对齐值为min(1,4),由于0x0004%1=0,所以b的地址段为0x0004</div><div class="line">5. short c的有效对其值为min(2,4),由于0x0006%2=0,所以c的地址段为[0x0006, 0x0007]</div><div class="line">6. 此时,[0x0000, 0x0007]共8个字节,8%4=0(4为struct A的对其值),无需对结构体本身扩展</div><div class="line">到此为止,struct A的地址分配结束,其所占有的地址段为[0x0000, 0x0007]共8个字节,所以sizeof(A)=8</div></pre></td></tr></table></figure></p>
+<p>再来是B<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">struct B &#123;</div><div class="line">	char a;</div><div class="line">	int b;</div><div class="line">	short c;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>同样采用与A相同的假设<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">1. 根据规则b,B自身的对齐值为int型的对齐值4</div><div class="line">2. 根据规则d,由于没有设置对其值,因此有效对其值为4</div><div class="line">3. char a的有效对齐值为min(1,4),由于0x0000%4=0,所以a的地址段为0x0000</div><div class="line">4. int b的有效对齐值为min(4,4),由于0x0004%4=0,所以b的地址段为[0x0004, 0x0007]</div><div class="line">5. short c的有效对其值为min(2,4),由于0x0008%2=0,所以c的地址段为[0x0008, 0x0009]</div><div class="line">6. 此时,[0x0000, 0x0009]共10个字节,10%4!=0,因此再扩展两个字节到0x000B,12%4=0</div><div class="line">到此为止,struct B的地址分配结束,其所占有的地址段为[0x0000, 0x000B]共12个字节,所以sizeof(B)=12</div></pre></td></tr></table></figure></p>
+<p><a href="http://www.cnblogs.com/repository/archive/2011/01/13/1933721.html" target="_blank" rel="external">参考链接</a></p>
 
           
         
@@ -879,6 +656,108 @@
 
 
     
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/09/23/hello-world/" itemprop="url">
+                  Hello World
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-23T08:38:13+08:00" content="2016-09-23">
+              2016-09-23
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
@@ -912,7 +791,7 @@
       <section class="site-overview sidebar-panel  sidebar-panel-active ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/images/head.jpg"
+               src="/images/avatar.gif"
                alt="DKChain" />
           <p class="site-author-name" itemprop="name">DKChain</p>
           <p class="site-description motion-element" itemprop="description">重度咖啡因依赖综合症患者</p>
@@ -920,17 +799,17 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-count">4</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           
             <div class="site-state-item site-state-categories">
-              <a href="/categories">
+              
                 <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分类</span>
-              </a>
+              
             </div>
           
 
@@ -967,7 +846,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -981,7 +860,7 @@
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
+    NexT.Muse
   </a>
 </div>
 
