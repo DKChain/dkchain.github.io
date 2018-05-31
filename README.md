@@ -1,0 +1,1 @@
+# lazier.github.io
