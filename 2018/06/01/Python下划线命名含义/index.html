@@ -493,8 +493,15 @@
 <h4 id="1-以字母开头的变量"><a href="#1-以字母开头的变量" class="headerlink" title="1. 以字母开头的变量"></a>1. 以字母开头的变量</h4><p>这一类变量在各种程序设计语言中都存在，从代码可读性来考虑，应当具有直观的含义，在学校的时候就经常会被要求减少使用a,b,c,i,j,k等在大多场景下不具备含义的字母</p>
 <h4 id="2-以单个下划线开头的变量"><a href="#2-以单个下划线开头的变量" class="headerlink" title="2. 以单个下划线开头的变量"></a>2. 以单个下划线开头的变量</h4><p>绝大部分情况下都和普通以字母开头的变量一样，不过，再使用某些场景，比如说用C编写扩展库会用’_’命名，再用去掉下划线的Python模块进行封装</p>
 <h4 id="3-以单个下划线结尾的变量"><a href="#3-以单个下划线结尾的变量" class="headerlink" title="3. 以单个下划线结尾的变量"></a>3. 以单个下划线结尾的变量</h4><p>这种命名方式在Python官方推荐的代码样式中是作为区分关键字的编码风格，比如说，当我们需要定义一个for变量时，如果非这个名字不可那我们可以依照规范将其命名为<code>for_</code></p>
-<h4 id="4-以两个下划线开头的变量"><a href="#4-以两个下划线开头的变量" class="headerlink" title="4. 以两个下划线开头的变量"></a>4. 以两个下划线开头的变量</h4><p>网上有部分人会说这是Python里面定义私有成员变量的方式，实际上，Python解释器会对以这种方式命名的变量做一个Name Mangling(改编名字)的操作，定义一个<code>__n</code>的变量时，可以通过instance._CLASS_NAME__n的形式访问到，可以参考下述代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class A:</span><br><span class="line">    def __init__(self, n = 0):</span><br><span class="line">        self.__n = n</span><br><span class="line"></span><br><span class="line">a = A(1)</span><br><span class="line">print(a.__n)</span><br><span class="line">print(a._A__n)</span><br></pre></td></tr></table></figure></p>
-<p>做这种操作的目的在于避免子类中存在同名变量(这里认为函数也是变量)而产生冲突</p>
+<h4 id="4-以两个下划线开头的变量"><a href="#4-以两个下划线开头的变量" class="headerlink" title="4. 以两个下划线开头的变量"></a>4. 以两个下划线开头的变量</h4><p>网上有部分人会说这是Python里面定义私有成员变量的方式，实际上，Python解释器会对以这种方式命名的变量做一个Name Mangling(改编名字)的操作，定义一个<code>__n</code>的变量时，可以通过instance._CLASS_NAME__n的形式访问到，可以参考下述代码</p>
+<pre><code>class A:
+    def __init__(self, n = 0):
+        self.__n = n
+
+a = A(1)
+print(a.__n)
+print(a._A__n)
+</code></pre><p>做这种操作的目的在于避免子类中存在同名变量(这里认为函数也是变量)而产生冲突</p>
 <h4 id="5-以两个下划线开头和结尾的变量"><a href="#5-以两个下划线开头和结尾的变量" class="headerlink" title="5. 以两个下划线开头和结尾的变量"></a>5. 以两个下划线开头和结尾的变量</h4><p>这种命名形式是Python的”魔术”对象，所有的Python入门书中都会提及.当然，不仅限于类中，全局变量<code>__file__</code>, <code>__name__</code>也是一样，官方建议不要尝试以这样的形式命名自己的变量或者函数，当然，解释器会认为这是合法的，并不会告诉你你这样做会带来的风险</p>
 
         
