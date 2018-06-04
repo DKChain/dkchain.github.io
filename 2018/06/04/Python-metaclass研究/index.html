@@ -43,7 +43,7 @@
     
     <title>
         
-            Python下划线命名含义 | 
+            Python metaclass研究 | 
         
         高效偷懒研究中心
     </title>
@@ -215,7 +215,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="高效偷懒研究中心">
-    <meta name="msapplication-starturl" content="http://yoursite.com/2018/06/01/Python下划线命名含义/">
+    <meta name="msapplication-starturl" content="http://yoursite.com/2018/06/04/Python-metaclass研究/">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="高效偷懒研究中心">
@@ -230,16 +230,16 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="http://yoursite.com/2018/06/01/Python下划线命名含义/">
+    <meta property="og:url" content="http://yoursite.com/2018/06/04/Python-metaclass研究/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Python下划线命名含义 | 高效偷懒研究中心">
+    <meta property="og:title" content="Python metaclass研究 | 高效偷懒研究中心">
     <meta property="og:image" content="/img/favicon.png">
     <meta property="og:description" content="">
     
 
     
-        <meta property="article:published_time" content="Fri Jun 01 2018 15:09:25 GMT+0800">
-        <meta property="article:modified_time" content="Mon Jun 04 2018 10:29:46 GMT+0800">
+        <meta property="article:published_time" content="Mon Jun 04 2018 09:51:02 GMT+0800">
+        <meta property="article:modified_time" content="Mon Jun 04 2018 11:21:14 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -247,7 +247,7 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="http://yoursite.com/2018/06/01/Python下划线命名含义/index.html" />
+        <link rel="canonical" href="http://yoursite.com/2018/06/04/Python-metaclass研究/index.html" />
     
 
     <!-- Structured-data for SEO -->
@@ -259,10 +259,10 @@
 {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "mainEntityOfPage": "http://yoursite.com/2018/06/01/Python下划线命名含义/index.html",
-    "headline": "Python下划线命名含义",
-    "datePublished": "Fri Jun 01 2018 15:09:25 GMT+0800",
-    "dateModified": "Mon Jun 04 2018 10:29:46 GMT+0800",
+    "mainEntityOfPage": "http://yoursite.com/2018/06/04/Python-metaclass研究/index.html",
+    "headline": "Python metaclass研究",
+    "datePublished": "Mon Jun 04 2018 09:51:02 GMT+0800",
+    "dateModified": "Mon Jun 04 2018 11:21:14 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Lazier",
@@ -346,7 +346,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-以字母开头的变量"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. 以字母开头的变量</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-以单个下划线开头的变量"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. 以单个下划线开头的变量</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-以单个下划线结尾的变量"><span class="post-toc-number">3.</span> <span class="post-toc-text">3. 以单个下划线结尾的变量</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4-以两个下划线开头的变量"><span class="post-toc-number">4.</span> <span class="post-toc-text">4. 以两个下划线开头的变量</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#5-以两个下划线开头和结尾的变量"><span class="post-toc-number">5.</span> <span class="post-toc-text">5. 以两个下划线开头和结尾的变量</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-class-is-object"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. class is object</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-type"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. type()</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-metaclass"><span class="post-toc-number">3.</span> <span class="post-toc-text">3. metaclass</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-单例模式的实现"><span class="post-toc-number">4.</span> <span class="post-toc-text">4. 单例模式的实现</span></a></li></ol>
     </ul>
     
 
@@ -378,7 +378,7 @@
         
     
             <p class="article-headline-p">
-                Python下划线命名含义
+                Python metaclass研究
             </p>
         </div>
 
@@ -397,7 +397,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>Lazier</strong>
-        <span>6月 01, 2018</span>
+        <span>6月 04, 2018</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -429,7 +429,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Python下划线命名含义&url=http://yoursite.com/2018/06/01/Python下划线命名含义/index.html&pic=http://yoursite.com/img/favicon.png&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Python metaclass研究&url=http://yoursite.com/2018/06/04/Python-metaclass研究/index.html&pic=http://yoursite.com/img/favicon.png&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -438,7 +438,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Python下划线命名含义&url=http://yoursite.com/2018/06/01/Python下划线命名含义/index.html&via=Lazier" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Python metaclass研究&url=http://yoursite.com/2018/06/04/Python-metaclass研究/index.html&via=Lazier" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Twitter
             </li>
@@ -447,7 +447,7 @@
 
     <!-- Share Facebook -->
     
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/06/01/Python下划线命名含义/index.html" target="_blank">
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/06/04/Python-metaclass研究/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Facebook
             </li>
@@ -456,7 +456,7 @@
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=http://yoursite.com/2018/06/01/Python下划线命名含义/index.html" target="_blank">
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://yoursite.com/2018/06/04/Python-metaclass研究/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Google+
             </li>
@@ -481,21 +481,24 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <p>在使用Python定义类时通常会看到如下几种命名方式:</p>
-<ol>
-<li>以字母开头的变量, 如<code>a</code>, <code>b</code>, <code>c</code></li>
-<li>以单个下划线开头的变量, 如<code>_f</code>, <code>_g</code></li>
-<li>以单个下划线结尾的变量, 如<code>p_</code></li>
-<li>以两个下划线开头的变量, 如<code>__x</code>, <code>__y</code></li>
-<li>以两个下划线开头和结尾的变量, 如<code>__init__</code>, <code>__del__</code>等等</li>
-</ol>
-<p>这些命名规范有些在解释器中具有特殊含义，有些则是一种通用的非强制性规范。</p>
-<h4 id="1-以字母开头的变量"><a href="#1-以字母开头的变量" class="headerlink" title="1. 以字母开头的变量"></a>1. 以字母开头的变量</h4><p>这一类变量在各种程序设计语言中都存在，从代码可读性来考虑，应当具有直观的含义，在学校的时候就经常会被要求减少使用a,b,c,i,j,k等在大多场景下不具备含义的字母</p>
-<h4 id="2-以单个下划线开头的变量"><a href="#2-以单个下划线开头的变量" class="headerlink" title="2. 以单个下划线开头的变量"></a>2. 以单个下划线开头的变量</h4><p>绝大部分情况下都和普通以字母开头的变量一样，不过，再使用某些场景，比如说用C编写扩展库会用’_’命名，再用去掉下划线的Python模块进行封装</p>
-<h4 id="3-以单个下划线结尾的变量"><a href="#3-以单个下划线结尾的变量" class="headerlink" title="3. 以单个下划线结尾的变量"></a>3. 以单个下划线结尾的变量</h4><p>这种命名方式在Python官方推荐的代码样式中是作为区分关键字的编码风格，比如说，当我们需要定义一个for变量时，如果非这个名字不可那我们可以依照规范将其命名为<code>for_</code></p>
-<h4 id="4-以两个下划线开头的变量"><a href="#4-以两个下划线开头的变量" class="headerlink" title="4. 以两个下划线开头的变量"></a>4. 以两个下划线开头的变量</h4><p>网上有部分人会说这是Python里面定义私有成员变量的方式，实际上，Python解释器会对以这种方式命名的变量做一个Name Mangling(改编名字)的操作，定义一个<code>__n</code>的变量时，可以通过instance._CLASS_NAME__n的形式访问到，可以参考下述代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class A:</span><br><span class="line">    def __init__(self, n = 0):</span><br><span class="line">        self.__n = n</span><br><span class="line"></span><br><span class="line">a = A(1)</span><br><span class="line">print(a.__n)</span><br><span class="line">print(a._A__n)</span><br></pre></td></tr></table></figure></p>
-<p>做这种操作的目的在于避免子类中存在同名变量(这里认为函数也是变量)而产生冲突</p>
-<h4 id="5-以两个下划线开头和结尾的变量"><a href="#5-以两个下划线开头和结尾的变量" class="headerlink" title="5. 以两个下划线开头和结尾的变量"></a>5. 以两个下划线开头和结尾的变量</h4><p>这种命名形式是Python的”魔术”对象，所有的Python入门书中都会提及.当然，不仅限于类中，全局变量<code>__file__</code>, <code>__name__</code>也是一样，官方建议不要尝试以这样的形式命名自己的变量或者函数，当然，解释器会认为这是合法的，并不会告诉你你这样做会带来的风险</p>
+        <h2 id="1-class-is-object"><a href="#1-class-is-object" class="headerlink" title="1. class is object"></a>1. class is object</h2><p>在绝大多数程序设计语言中，类是一种对象的抽象表达，Python自然也不例外:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class SimpleClass:</span><br><span class="line">    pass</span><br><span class="line"></span><br><span class="line">obj = SimpleClass()</span><br><span class="line">print(obj)</span><br></pre></td></tr></table></figure></p>
+<p>上述代码执行后会将类的模块名，类名以及在内存中的地址打印出来，如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;__main__.SimpleClass object at 0x0000000005C95BA8&gt;</span><br></pre></td></tr></table></figure></p>
+<p>不过在Python中，类本身也是一种对象，在上述代码定义好<code>SimpleClass</code>类后，我们可以试着将<code>SimpleClass</code>本身打印出来<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(SimpleClass)</span><br><span class="line"># [Out] &lt;class &apos;__main__.SimpleClass&apos;&gt;</span><br></pre></td></tr></table></figure></p>
+<p>也就是说，当执行完<code>SimpleClass</code>的定义代码后，解释器会在内存中创建一个新的对象，名为<code>SimpleClass</code>。当然，由于类本身也是一种对象，自然对类的种种操作:赋值给变量，添加属性，作为参数传递<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">def func_print(arg):</span><br><span class="line">    print(arg)</span><br><span class="line"></span><br><span class="line">func_print(SimpleClass)</span><br><span class="line"># [Out] &lt;class &apos;__main__.SimpleClass&apos;&gt;</span><br><span class="line"></span><br><span class="line">print(hasattr(SimpleClass, &apos;attr&apos;))</span><br><span class="line"># [Out] False</span><br><span class="line"></span><br><span class="line">SimpleClass.attr = &apos;value&apos;</span><br><span class="line">print(hasattr(SimpleClass, &apos;attr&apos;))</span><br><span class="line"># [Out] True</span><br><span class="line">print(SimpleClass.attr)</span><br><span class="line"># [Out] value</span><br><span class="line"></span><br><span class="line">class_ = SimpleClass</span><br><span class="line">print(class_)</span><br><span class="line"># [Out] &lt;class &apos;__main__.SimpleClass&apos;&gt;</span><br><span class="line"></span><br><span class="line">print(class_())</span><br><span class="line"># [Out] &lt;__main__.SimpleClass object at 0x0000000005CC7EF0&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="2-type"><a href="#2-type" class="headerlink" title="2. type()"></a>2. type()</h2><p>Python内置函数type通常会用来判断传入的参数的类型，如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">type(1)</span><br><span class="line"># [Out] int</span><br><span class="line"></span><br><span class="line">type(&apos;abc&apos;)</span><br><span class="line"># [Out] str</span><br><span class="line"></span><br><span class="line">def func():</span><br><span class="line">    print(&quot;Hello&quot;)</span><br><span class="line"></span><br><span class="line">type(func)</span><br><span class="line"># [Out] function</span><br><span class="line"></span><br><span class="line">s = SimpleClass()</span><br><span class="line">type(s)</span><br><span class="line"># [Out] __main__.SimpleClass</span><br><span class="line"></span><br><span class="line">type(SimpleClass)</span><br><span class="line"># [Out] type</span><br><span class="line"></span><br><span class="line">print(type)</span><br><span class="line"># [Out] &lt;class &apos;type&apos;&gt;</span><br></pre></td></tr></table></figure></p>
+<p>从最后两段代码的执行结果可以看到，Python中<strong>类</strong>的<strong>类型</strong>是<code>type</code>,<code>type</code>也是一种类。而<code>type</code>的语法为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type(name, bases, dict)</span><br></pre></td></tr></table></figure></p>
+<p>其中<code>bases</code>和<code>dict</code>都不是必选参数，其中<code>bases</code>是一个tuple，表示该类继承哪些类，<code>dict</code>是成员变量的映射关系。在只有一个参数的时候，<code>type</code>会返回传入的参数的类型，在有两个以上参数时，会创建一个新的类，也就是说:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">class A:</span><br><span class="line">    a = 1</span><br><span class="line">    def func(self, n):</span><br><span class="line">        print(self.a*n)</span><br></pre></td></tr></table></figure></p>
+<p>和<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A = type(&apos;A&apos;, (object,), dict(a = 1, func = lambda self,n:print(self.a*n)))</span><br></pre></td></tr></table></figure></p>
+<p>这两段代码是等价的，任取其中一段都能创建一个新的类A，可以用这个类A来创建对象。利用<code>type</code>，可以在代码运行期间动态创建类。</p>
+<h2 id="3-metaclass"><a href="#3-metaclass" class="headerlink" title="3. metaclass"></a>3. metaclass</h2><p>metaclass可以控制类的创建行为，参照下述代码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">class ListMetaclass(type):</span><br><span class="line">    def __new__(cls, name, bases, attrs):</span><br><span class="line">        attrs[&apos;add&apos;] = lambda self, value:self.append(value)</span><br><span class="line">        return type.__new__(cls, name, bases, attrs)</span><br><span class="line"></span><br><span class="line">class MyList(list, metaclass = ListMetaclass):</span><br><span class="line">    pass</span><br><span class="line"></span><br><span class="line">my_l = MyList()</span><br><span class="line">my_l.add(1)</span><br><span class="line">print(my_l)</span><br><span class="line"># [Out] [1]</span><br><span class="line"></span><br><span class="line">l = list()</span><br><span class="line">l.add(1)</span><br><span class="line"># [Out] </span><br><span class="line">#---------------------------------------------------------------------------</span><br><span class="line">#AttributeError                            Traceback #(most recent call last)</span><br><span class="line">#&lt;ipython-input-59-001a7ae7d652&gt; in &lt;module&gt;()</span><br><span class="line">#----&gt; 1 l.add(1)</span><br><span class="line">#</span><br><span class="line">#AttributeError: &apos;list&apos; object has no attribute &apos;add&apos;</span><br></pre></td></tr></table></figure></p>
+<p>从结果来看，定义<code>ListMetaclass</code>，然后在定义<code>MyList</code>时继承<code>list</code>类，并指定<code>metaclass</code>为<code>ListMetaclass</code>;接着创建<code>MyList</code>的实例<code>my_l</code>，并调用<code>add</code>函数添加一个新的对象;然后再创建<code>list</code>的实例<code>l</code>，并调用<code>add</code>函数，结果抛出<code>AttributeError</code>异常。</p>
+<p>重头看一下整个代码，在一开始定义<code>ListMetaclass</code>的时候，定义了<code>__new__</code>函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">def __new__(cls, name, bases, attrs):</span><br><span class="line">    attrs[&apos;add&apos;] = lambda self, value: self.append(value)</span><br><span class="line">    return type.__new__(cls, name, bases, attrs)</span><br></pre></td></tr></table></figure></p>
+<p>其中，<code>cls</code>是当前准备创建类的对象，<code>name</code>是类的名字，<code>bases</code>是类继承的父类的tuple，<code>attrs</code>是类的成员映射。<br>当我们定义(创建)<code>MyList</code>类时，会通过<code>ListMetaclass.__new__()</code>进行创建，在这个函数中，我们可以对类的定义进行修改，比如添加自定义函数<code>add</code>等，之后在调用<code>type</code>创建类并将其返回。</p>
+<p>看起来有一点混乱?现在来理一下使用<code>metaclass</code>动态创建类并操作类的创建行为的流程<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">定义class</span><br><span class="line">    |__指定metaclass</span><br><span class="line">        |__调用metaclass.__new__</span><br><span class="line">            |__完成metaclass的动作，返回新的类</span><br></pre></td></tr></table></figure></p>
+<h2 id="4-单例模式的实现"><a href="#4-单例模式的实现" class="headerlink" title="4. 单例模式的实现"></a>4. 单例模式的实现</h2><p>这种动态创建类的特性，在绝大多数情况下并不会用到，因为在很多场景下并不需要我们实现动态创建类的功能。不过，在很多框架里面却会反复用到这样的特性，比如说ORM(对象-关系映射);也可以利用这样的特性实现单例模式，具体参照如下代码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class SingleTon(type):</span><br><span class="line">    def __init__(self, *args, **kwargs):</span><br><span class="line">        self._ins = None</span><br><span class="line">        super(SingleTon, self).__init__(*args, **kwargs)</span><br><span class="line"></span><br><span class="line">    def __call__(self, *args, **kwargs):</span><br><span class="line">        if self._ins is None:</span><br><span class="line">            self._ins = super(SingleTon, self).__call__(*args, **kwargs)</span><br><span class="line">        return self._ins</span><br><span class="line"></span><br><span class="line">class Any(metaclass = SingleTon):</span><br><span class="line">    any_value = 1</span><br><span class="line"></span><br><span class="line">a = Any()</span><br><span class="line">b = Any()</span><br><span class="line"></span><br><span class="line">print(id(a))</span><br><span class="line"># [Out] 19184944</span><br><span class="line">print(id(b))</span><br><span class="line"># [Out] 19184944</span><br></pre></td></tr></table></figure></p>
+<p>上述代码便实现了单例模式，在第一次创建<code>Any</code>的实例<code>a</code>时，创建了新的对象，id为19184944，在第二次创建<code>Any</code>的实例<code>b</code>时，由于已经存在了实例<code>a</code>，便直接将实例<code>a</code>返回，所以此时<code>a</code>和<code>b</code>是指向同一个实例的不同的变量名。在这里可能会产生疑问:为什么在定义<code>SingleTon</code>类时，在<code>__call__</code>函数中进行了是否存在实例的判断，而不是用<code>__new__</code>函数?因为，metaclass是用来创建<strong>类本身</strong>，而不是用来创建<strong>类构造的对象</strong>的，这意味着<code>__new__</code>函数只会在解释器读取完<code>Any</code>类并将其创建的时候执行一次。在<code>__call__</code>被调用时，<code>self</code>就是类，形如<code>Any()</code>这样的代码会调用到<code>__call__</code>函数，在类<code>Any</code>看来，<code>__call__</code>中的<code>self</code>就是<code>&lt;class &#39;__main__.Any&#39;&gt;</code>，所以创建两个<code>Any</code>的实例，<code>__call__</code>就会被调用两次，所以，在<code>__call__</code>中对<code>self</code>操作，添加新的属性<code>_ins</code>用来保存一个<code>Any</code>的实例，并在每次构造是判断是否存在该实例来决定是否创建新的实例。</p>
+<p>当然，使用<code>__new__</code>函数也能实现单例模式，不过在这里就应该在需要实现单例模式的类中重写<code>__new__</code>函数，参考代码如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class SingleTon:</span><br><span class="line">    def __new__(cls, name, bases, attrs):</span><br><span class="line">        if not hasattr(cls, &apos;_ins&apos;):</span><br><span class="line">            cls._ins = super(SingleTon, cls).__new__(cls, name, bases, attrs)</span><br><span class="line">        return cls._ins</span><br><span class="line"></span><br><span class="line">a = SingleTon()</span><br><span class="line">b = SingleTon()</span><br><span class="line">print(id(a))</span><br><span class="line"># [Out] 12696264</span><br><span class="line">print(id(b))</span><br><span class="line"># [Out] 12696264</span><br></pre></td></tr></table></figure></p>
+<p>如有不足之处，欢迎指正。</p>
 
         
     
@@ -516,19 +519,19 @@
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
-        <a href="/2018/06/04/Python-metaclass研究/" id="post_nav-newer" class="prev-content">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_back</i>
-            </button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            新篇
-        </a>
-    
 
     <!-- Section Spacer -->
     <div class="section-spacer"></div>
 
     <!-- Next Nav -->
+    
+        <a href="/2018/06/01/Python下划线命名含义/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
     
 </nav>
 
