@@ -1,1073 +1,987 @@
 <!DOCTYPE html>
-<html style="display: none;" lang="zh">
+<html>
     <head>
-    <meta charset="utf-8">
-    <!--
-        © Material Theme
-        https://github.com/viosey/hexo-theme-material
-        Version: 1.5.2 -->
-    <script>
-        window.materialVersion = "1.5.2"
-        // Delete localstorage with these tags
-        window.oldVersion = [
-            'codestartv1',
-            '1.3.4',
-            '1.4.0',
-            '1.4.0b1',
-            '1.5.0'
-        ]
-    </script>
-
-    <!-- dns prefetch -->
-    <meta http-equiv="x-dns-prefetch-control" content="on">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- Meta & Info -->
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-    <meta name="renderer" content="webkit">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-
-    <!-- Title -->
-    
-    <title>
-        
-        高效偷懒研究中心
-    </title>
-
-    <!-- Favicons -->
-    <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
-    <link rel="icon" href="/img/favicon.png">
-
-    <meta name="format-detection" content="telephone=no"/>
-    <meta name="description" itemprop="description" content="">
-    <meta name="keywords" content="">
-    <meta name="theme-color" content="#0097A7">
-
-    <!-- Disable Fucking Bloody Baidu Tranformation -->
-    <meta http-equiv="Cache-Control" content="no-transform" />
-    <meta http-equiv="Cache-Control" content="no-siteapp" />
-
-    <!--[if lte IE 9]>
-        <link rel="stylesheet" href="/css/ie-blocker.css">
-
-        
-            <script src="/js/ie-blocker.zhCN.js"></script>
-        
-    <![endif]-->
-
-    <!-- Import lsloader -->
-    <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(a){try{localStorage.removeItem(a)}catch(b){}};lsloader.setLS=function(a,c){try{localStorage.setItem(a,c)}catch(b){}};lsloader.getLS=function(a){var c="";try{c=localStorage.getItem(a)}catch(b){c=""}return c};versionString="/*"+(window.materialVersion||"unknownVersion")+"*/";lsloader.clean=function(){try{var b=[];for(var a=0;a<localStorage.length;a++){b.push(localStorage.key(a))}b.forEach(function(e){var f=lsloader.getLS(e);if(window.oldVersion){var d=window.oldVersion.reduce(function(g,h){return g||f.indexOf("/*"+h+"*/")!==-1},false);if(d){lsloader.removeLS(e)}}})}catch(c){}};lsloader.clean();lsloader.load=function(f,a,b,d){if(typeof b==="boolean"){d=b;b=undefined}d=d||false;b=b||function(){};var e;e=this.getLS(f);if(e&&e.indexOf(versionString)===-1){this.removeLS(f);this.requestResource(f,a,b,d);return}if(e){var c=e.split(versionString)[0];if(c!=a){console.log("reload:"+a);this.removeLS(f);this.requestResource(f,a,b,d);return}e=e.split(versionString)[1];if(d){this.jsRunSequence.push({name:f,code:e});this.runjs(a,f,e)}else{document.getElementById(f).appendChild(document.createTextNode(e));b()}}else{this.requestResource(f,a,b,d)}};lsloader.requestResource=function(b,e,a,c){var d=this;if(c){this.iojs(e,b,function(h,f,g){d.setLS(f,h+versionString+g);d.runjs(h,f,g)})}else{this.iocss(e,b,function(f){document.getElementById(b).appendChild(document.createTextNode(f));d.setLS(b,e+versionString+f)},a)}};lsloader.iojs=function(d,b,g){var a=this;a.jsRunSequence.push({name:b,code:""});try{var f=new XMLHttpRequest();f.open("get",d,true);f.onreadystatechange=function(){if(f.readyState==4){if((f.status>=200&&f.status<300)||f.status==304){if(f.response!=""){g(d,b,f.response);return}}a.jsfallback(d,b)}};f.send(null)}catch(c){a.jsfallback(d,b)}};lsloader.iocss=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.iofonts=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.runjs=function(f,c,e){if(!!c&&!!e){for(var b in this.jsRunSequence){if(this.jsRunSequence[b].name==c){this.jsRunSequence[b].code=e}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var a=document.createElement("script");a.appendChild(document.createTextNode(this.jsRunSequence[0].code));a.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(a);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else{if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var d=this;var a=document.createElement("script");a.src=this.jsRunSequence[0].path;a.type="text/javascript";this.jsRunSequence[0].status="loading";a.onload=function(){d.jsRunSequence.shift();if(d.jsRunSequence.length>0){d.runjs()}};document.body.appendChild(a)}}};lsloader.tagLoad=function(b,a){this.jsRunSequence.push({name:a,code:"",path:b,status:"failed"});this.runjs()};lsloader.jsfallback=function(c,b){if(!!this.jsnamemap[b]){return}else{this.jsnamemap[b]=b}for(var a in this.jsRunSequence){if(this.jsRunSequence[a].name==b){this.jsRunSequence[a].code="";this.jsRunSequence[a].status="failed";this.jsRunSequence[a].path=c}}this.runjs()};lsloader.cssfallback=function(e,c,b){if(!!this.cssnamemap[c]){return}else{this.cssnamemap[c]=1}var d=document.createElement("link");d.type="text/css";d.href=e;d.rel="stylesheet";d.onload=d.onerror=b;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(d,a)};lsloader.runInlineScript=function(c,b){var a=document.getElementById(b).innerText;this.jsRunSequence.push({name:c,code:a});this.runjs()}})();</script>
-
-    <!-- Import queue -->
-    <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
-
-    <!-- Import CSS -->
-    
-        <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.min.css?Z7a72R1E4SxzBKR/WGctOA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?MKetZV3cUTfDxvMffaOezg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-
-        
+        <meta charset="UTF-8">
+        <title>秘密礼物</title>
+        <style>
+            html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block;vertical-align:baseline}audio:not([controls]){display:none;height:0}[hidden],template{display:none}a{background:transparent}a:active,a:hover{outline:0}abbr[title]{border-bottom:1px dotted}b,strong{font-weight:bold}dfn{font-style:italic}h1{font-size:2em;margin:0.67em 0}mark{background:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sup{top:-0.5em}sub{bottom:-0.25em}img{border:0}svg:not(:root){overflow:hidden}figure{margin:1em 40px}hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}pre{overflow:auto}code,kbd,pre,samp{font-family:monospace, monospace;font-size:1em}button,input,optgroup,select,textarea{color:inherit;font:inherit;margin:0}button{overflow:visible}button,select{text-transform:none}button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer}button[disabled],html input[disabled]{cursor:default}button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}input{line-height:normal}input[type="checkbox"],input[type="radio"]{-moz-box-sizing:border-box;box-sizing:border-box;padding:0}input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-outer-spin-button{height:auto}input[type="search"]{-webkit-appearance:textfield;-moz-box-sizing:content-box;box-sizing:content-box}input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none}fieldset{border:1px solid #c0c0c0;margin:0 2px;padding:0.35em 0.625em 0.75em}legend{border:0;padding:0}textarea{overflow:auto}optgroup{font-weight:bold}table{border-collapse:collapse;border-spacing:0}td,th{padding:0}
+        </style>
+        <style>
             
-        
-
-    
-
-    
-
-    <!-- Config CSS -->
-
-<!-- Other Styles -->
-<style>
-  body, html {
-    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
-    overflow-x: hidden !important;
-  }
-  
-  code {
-    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-  }
-
-  a {
-    color: #00838F;
-  }
-
-  .mdl-card__media,
-  #search-label,
-  #search-form-label:after,
-  #scheme-Paradox .hot_tags-count,
-  #scheme-Paradox .sidebar_archives-count,
-  #scheme-Paradox .sidebar-colored .sidebar-header,
-  #scheme-Paradox .sidebar-colored .sidebar-badge{
-    background-color: #0097A7 !important;
-  }
-
-  /* Sidebar User Drop Down Menu Text Color */
-  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
-  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
-    color: #0097A7 !important;
-  }
-
-  #post_entry-right-info,
-  .sidebar-colored .sidebar-nav li:hover > a,
-  .sidebar-colored .sidebar-nav li:hover > a i,
-  .sidebar-colored .sidebar-nav li > a:hover,
-  .sidebar-colored .sidebar-nav li > a:hover i,
-  .sidebar-colored .sidebar-nav li > a:focus i,
-  .sidebar-colored .sidebar-nav > .open > a,
-  .sidebar-colored .sidebar-nav > .open > a:hover,
-  .sidebar-colored .sidebar-nav > .open > a:focus,
-  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
-    color: #0097A7 !important;
-  }
-
-  .toTop {
-    background: #757575 !important;
-  }
-
-  .material-layout .material-post>.material-nav,
-  .material-layout .material-index>.material-nav,
-  .material-nav a {
-    color: #757575;
-  }
-
-  #scheme-Paradox .MD-burger-layer {
-    background-color: #757575;
-  }
-
-  #scheme-Paradox #post-toc-trigger-btn {
-    color: #757575;
-  }
-
-  .post-toc a:hover {
-    color: #00838F;
-    text-decoration: underline;
-  }
-
-</style>
-
-
-<!-- Theme Background Related-->
-
-    <style>
-      body{
-        background-image: url(/img/bg.png);
-      }
-    </style>
-
-
-
-
-<!-- Fade Effect -->
-
-    <style>
-      .fade {
-        transition: all 800ms linear;
-        -webkit-transform: translate3d(0,0,0);
-        -moz-transform: translate3d(0,0,0);
-        -ms-transform: translate3d(0,0,0);
-        -o-transform: translate3d(0,0,0);
-        transform: translate3d(0,0,0);
-        opacity: 1;
-      }
-
-      .fade.out{
-        opacity: 0;
-      }
-    </style>
-
-
-<!-- Import Font -->
-<!-- Import Roboto -->
-
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
-
-
-<!-- Import Material Icons -->
-
-
-    <style id="material_icons"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_icons","/css/material-icons.css?pqhB/Rd/ab0H2+kZp0RDmw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
-
-
-
-
-    <!-- Import jQuery -->
-    
-        <script>lsloader.load("jq_js","/js/jquery.min.js?ezyEvm8ST5CGfpA+kFFi1g==", true)</script>
-    
-
-    <!-- WebAPP Icons -->
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="高效偷懒研究中心">
-    <meta name="msapplication-starturl" content="http://yoursite.com/">
-    <meta name="msapplication-navbutton-color" content="#0097A7">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-title" content="高效偷懒研究中心">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="apple-touch-icon" href="/img/favicon.png">
-
-    <!-- Site Verification -->
-    
-    
-
-    <!-- RSS -->
-    
-
-    <!-- The Open Graph protocol -->
-    <meta property="og:url" content="http://yoursite.com/">
-    <meta property="og:type" content="blog">
-    <meta property="og:title" content="高效偷懒研究中心">
-    <meta property="og:image" content="/img/favicon.png">
-    <meta property="og:description" content="">
-    
-
-    
-
-    <!-- The Twitter Card protocol -->
-    <meta name="twitter:card" content="summary_large_image">
-
-    <!-- Add canonical link for SEO -->
-    
-        <link rel="canonical" href="http://yoursite.com" />
-    
-
-    <!-- Structured-data for SEO -->
-    
-        
-<script type="application/ld+json">
-{
-    "@context": "http://schema.org",
-    "@type": "Website",
-    "publisher": {
-        "@type": "Organization",
-        "name": "高效偷懒研究中心",
-        "logo": "/img/favicon.png"
-    },
-    "url": "http://yoursite.com",
-    "image": {
-        "@type": "ImageObject",
-        "url": "/img/favicon.png"
-    },
-    "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "http://yoursite.com"
-    },
-    "description": ""
+body {
+  font-family: "Avenir", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background: #79a8ae;
+  color: #666;
+  font-size: 16px;
+  line-height: 1.5em;
 }
-</script>
+
+h1 {
+  color: #111;
+  margin: 0 0 12px 0;
+  font-size: 24px;
+  line-height: 1.5em;
+}
+
+p {
+  margin: 0 0 10x 0;
+}
+
+a {
+  color: #888;
+  text-decoration: none;
+  border-bottom: 1px solid #ccc;
+}
+
+a:hover {
+  border-bottom-color: #888;
+}
+
+body,
+.overlay {
+  -webkit-perspective: 1000;
+  -webkit-perspective-origin-y: 25%;
+}
+
+.body--ready {
+  /* Ideas
+  background: -webkit-linear-gradient(top, #e2b986 -10%, #241c35 140%);
+  background: -webkit-linear-gradient(top, #c97369 -40%, #241c35 130%);
+  background: -webkit-linear-gradient(top, #fac4c4 -10%, #606386 140%);
+  background: -webkit-linear-gradient(top, #519ab0 0%, #414A6D 110%);
+  background: -webkit-linear-gradient(top, rgb(129, 0, 170) 0%, rgb(43, 4, 114) 110%);
+  background: -webkit-linear-gradient(top, rgb(163, 235, 189) 0%, rgb(16, 93, 145) 110%);
+  background: -webkit-linear-gradient(top, rgb(165, 103, 189) 0%, rgb(75, 233, 214) 120%);
+  */
+
+  background: -webkit-linear-gradient(top, rgb(203, 235, 219) 0%, rgb(55, 148, 192) 120%);
+  background: -moz-linear-gradient(top, rgb(203, 235, 219) 0%, rgb(55, 148, 192) 120%);
+  background: -o-linear-gradient(top, rgb(203, 235, 219) 0%, rgb(55, 148, 192) 120%);
+  background: -ms-linear-gradient(top, rgb(203, 235, 219) 0%, rgb(55, 148, 192) 120%);
+  background: linear-gradient(top, rgb(203, 235, 219) 0%, rgb(55, 148, 192) 120%);
+}
+
+.body--ready .overlay {
+  -webkit-transition: -webkit-transform 0.7s cubic-bezier(0.694, 0.0482, 0.335, 1),
+                      opacity 0.7s cubic-bezier(0.694, 0.0482, 0.335, 1);
+  -moz-transition: -moz-transform 0.7s cubic-bezier(0.694, 0.0482, 0.335, 1),
+                      opacity 0.7s cubic-bezier(0.694, 0.0482, 0.335, 1);
+  -ms-transition: -ms-transform 0.7s cubic-bezier(0.694, 0.0482, 0.335, 1),
+                      opacity 0.7s cubic-bezier(0.694, 0.0482, 0.335, 1);
+  -o-transition: -o-transform 0.7s cubic-bezier(0.694, 0.0482, 0.335, 1),
+                      opacity 0.7s cubic-bezier(0.694, 0.0482, 0.335, 1);
+  transition: transform 0.7s cubic-bezier(0.694, 0.0482, 0.335, 1),
+                      opacity 0.7s cubic-bezier(0.694, 0.0482, 0.335, 1);
+}
 
 
+.ui {
+  position: absolute;
+  left: 50%;
+  bottom: 5%;
+  width: 300px;
+  margin-left: -150px;
+}
+
+.ui-input {
+  width: 100%;
+  height: 50px;
+  background: none;
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  border: none;
+  border-bottom: 2px solid white;
+}
+
+.ui-input:focus {
+  outline: none;
+  border: none;
+  border-bottom: 2px solid white;
+}
+
+.ui-return {
+  display: none;
+  position: absolute;
+  top: 20px;
+  right: 0;
+  padding: 3px 2px 0 2px;
+  font-size: 10px;
+  line-height: 10px;
+  color: #fff;
+  border: 1px solid #fff;
+}
+
+.ui--enter .ui-return {
+  display: block;
+}
+
+.ui--wide {
+  width: 76%;
+  margin-left: 12%;
+  left: 0;
+}
+
+.ui--wide .ui-return {
+  right: -20px;
+}
+
+.help {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  font-size: 13px;
+  line-height: 27px;
+  font-weight: bold;
+  cursor: pointer;
+  background: #fff;
+  color: #79a8ae;
+  opacity: .9;
+
+  -webkit-transition: opacity 0.1s cubic-bezier(0.694, 0.0482, 0.335, 1);
+  -moz-transition: opacity 0.1s cubic-bezier(0.694, 0.0482, 0.335, 1);
+  -ms-transition: opacity 0.1s cubic-bezier(0.694, 0.0482, 0.335, 1);
+  -o-transition: opacity 0.1s cubic-bezier(0.694, 0.0482, 0.335, 1);
+  transition: opacity 0.1s cubic-bezier(0.694, 0.0482, 0.335, 1);
+}
+
+.help:hover {
+  opacity: 1;
+}
+
+.overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 550px;
+  height: 490px;
+  margin: -260px 0 0 -275px;
+  opacity: 0;
+
+  -webkit-transform: rotateY(90deg);
+  -moz-transform: rotateY(90deg);
+  -ms-transform: rotateY(90deg);
+  -o-transform: rotateY(90deg);
+  transform: rotateY(90deg);
+}
+
+.overlay--visible {
+  opacity: 1;
+
+  -webkit-transform: rotateY(0);
+  -moz-transform: rotateY(0);
+  -ms-transform: rotateY(0);
+  -o-transform: rotateY(0);
+  transform: rotateY(0);
+}
+
+.ui-share,
+.ui-details {
+  opacity: .9;
+  background: #fff;
+  z-index: 2;
+}
+
+.ui-details-content,
+.ui-share-content {
+  padding: 100px 50px;
+}
+
+.commands {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  cursor: pointer;
+}
+
+.commands-item {
+  font-size: 12px;
+  line-height: 22px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 20px;
+  background: #fff;
+  margin-top: 1px;
+  color: #333;
+  opacity: .9;
+
+  -webkit-transition: -webkit-transform 0.7s cubic-bezier(0.694, 0.0482, 0.335, 1),
+                      opacity 0.1s cubic-bezier(0.694, 0.0482, 0.335, 1);
+  -moz-transition: -moz-transform 0.1s cubic-bezier(0.694, 0.0482, 0.335, 1),
+                      opacity 0.1s cubic-bezier(0.694, 0.0482, 0.335, 1);
+  -ms-transition: -ms-transform 0.1s cubic-bezier(0.694, 0.0482, 0.335, 1),
+                      opacity 0.1s cubic-bezier(0.694, 0.0482, 0.335, 1);
+  -o-transition: -o-transform 0.1s cubic-bezier(0.694, 0.0482, 0.335, 1),
+                      opacity 0.1s cubic-bezier(0.694, 0.0482, 0.335, 1);
+  transition: transform 0.1s cubic-bezier(0.694, 0.0482, 0.335, 1),
+                      opacity 0.1s cubic-bezier(0.694, 0.0482, 0.335, 1);
+}
+
+.commands-item--gap {
+  margin-top: 9px;
+}
+
+.commands-item:hover {
+  opacity: 1;
+}
+
+.commands-item:hover .commands-item-action {
+  background: #333;
+}
+
+.commands-item a {
+  display: inline-block;
+}
+
+.commands-item-mode {
+  display: inline-block;
+  margin-left: 3px;
+  font-style: italic;
+  color: #ccc;
+}
+
+.commands-item-title {
+  display: inline-block;
+  width: 150px;
+}
+
+.commands-item-info {
+  display: inline-block;
+  width: 300px;
+  font-size: 14px;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: normal;
+  color: #aaa;
+}
+
+.commands-item-action {
+  display: inline-block;
+  float: right;
+  margin-top: 3px;
+  text-transform: uppercase;
+  font-size: 10px;
+  line-height: 10px;
+  color: #fff;
+  background: #90c9d1;
+  padding: 5px 10px 4px 10px;
+  border-radius: 3px;
+}
+
+.commands-item:first-child {
+  margin-top: 0;
+}
+
+.twitter-share {
+  position: absolute;
+  top: 4px;
+  right: 20px;
+}
 
 
-    
+.tabs-labels {
+  margin-bottom: 9px;
+}
 
-    <!-- Analytics -->
-    
-    
-    
+.tabs-label {
+  display: inline-block;
+  background: #fff;
+  padding: 10px 20px;
+  font-size: 12px;
+  line-height: 22px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #333;
+  opacity: .5;
+  cursor: pointer;
+  margin-right: 2px;
 
-    <!-- Custom Head -->
-    
+  -webkit-transition: opacity 0.1s cubic-bezier(0.694, 0.0482, 0.335, 1);
+  -moz-transition: opacity 0.1s cubic-bezier(0.694, 0.0482, 0.335, 1);
+  -ms-transition: opacity 0.1s cubic-bezier(0.694, 0.0482, 0.335, 1);
+  -o-transition: opacity 0.1s cubic-bezier(0.694, 0.0482, 0.335, 1);
+  transition: opacity 0.1s cubic-bezier(0.694, 0.0482, 0.335, 1);
+}
 
-</head>
+.tabs-label:hover {
+  opacity: .9;
+}
 
+.tabs-label--active {
+  opacity: .9;
+}
 
-    
-        <body id="scheme-Paradox" class="lazy">
-            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
-                
+.tabs-panel {
+  display: none;
+}
 
-                <!-- Main Container -->
-                <main class="material-layout__content" id="main">
+.tabs-panel--active {
+  display: block;
+}
 
-                    <!-- Top Anchor -->
-                    <div id="top"></div>
+.tab-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
 
-                    
-                        <!-- Hamburger Button -->
-                        <button class="MD-burger-icon sidebar-toggle">
-                            <span class="MD-burger-layer"></span>
-                        </button>
-                    
+.touch .ui-input {
+  display: none;
+}
 
-                    <!-- Index Module -->
-<div class="material-index mdl-grid">
-    
-        <!-- Paradox Header -->
-        <!-- Daily pic -->
-<div class="mdl-card mdl-shadow--2dp daily-pic mdl-cell mdl-cell--8-col index-top-block">
+        </style>
+    </head>
 
-    <!-- Pic & Slogan -->
-    <div class="mdl-card__media mdl-color-text--grey-50" style="background-image:url(/img/daily_pic.png)">
-        <p class="index-top-block-slogan"><a href="#">
-        
-            
-                懒惰是第零生产力
-            
-        
-        </a></p>
-    </div>
-
-    <!-- Avatar & Name -->
-    <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
-        <!-- Author Avatar -->
-        <div id="author-avatar">
-            <img src="/img/avatar.png" width="32px" height="32px" alt="avatar">
+    <body>
+        <canvas class="canvas"></canvas>
+        <div class="ui" style="display:none">
+            <input class="ui-input" type="text">
+            <span class="ui-return">↵</span>
         </div>
-        <div>
-            <strong>Lazier</strong>
-        </div>
-    </div>
-</div>
+        <script>
+            var S = {
+  init: function () {
+    var action = window.location.href,
+        i = action.indexOf('?a=');
 
-        <!-- Blog info -->
-<div class="mdl-card mdl-shadow--2dp something-else mdl-cell mdl-cell--8-col mdl-cell--4-col-desktop index-top-block">
+    S.Drawing.init('.canvas');
+    document.body.classList.add('body--ready');
 
-    <!-- Search -->
-    
-    <!-- Google -->
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable" method="post" action="">
-        <label id="search-label" class="mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent mdl-shadow--4dp" for="search">
-            <i class="material-icons mdl-color-text--white" role="presentation">search</i>
-        </label>
-
-        <form autocomplete="off" id="search-form" method="get" action="//google.com/search" accept-charset="UTF-8" class="mdl-textfield__expandable-holder" target="_blank">
-            <input class="mdl-textfield__input search-input" type="search" name="q" id="search" placeholder="">
-            <label id="search-form-label" class="mdl-textfield__label" for="search"></label>
-
-            <input type="hidden" name="sitesearch" value="http://yoursite.com">
-        </form>
-    </div>
-
-
-
-
-
-
-
-    <!-- LOGO -->
-    <div class="something-else-logo mdl-color--white mdl-color-text--grey-600">
-        <a href="#" target="_blank">
-            <img src="/img/logo.png" alt="logo" />
-        </a>
-    </div>
-
-    <!-- Infomation -->
-    <div class="mdl-card__supporting-text meta meta--fill mdl-color-text--grey-600">
-        <!-- Blog Title -->
-        <div>
-            <strong>高效偷懒研究中心</strong>
-        </div>
-        <div class="section-spacer"></div>
-
-        <!-- Pages -->
-        <button id="show-pages-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-            <i class="material-icons" role="presentation">view_carousel</i>
-            <span class="visuallyhidden">Pages</span>
-        </button>
-        <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="show-pages-button">
-            
-        </ul>
-
-        <!-- Menu -->
-        <button id="menubtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-            <i class="material-icons" role="presentation">more_vert</i>
-            <span class="visuallyhidden">show menu</span>
-        </button>
-        <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="menubtn">
-            
-
-            
-
-            
-                <a class="index_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=高效偷懒研究中心&url=http://yoursite.com&pic=http://yoursite.com/img/favicon.png&searchPic=false&style=simple" target="_blank">
-                    <li class="mdl-menu__item mdl-js-ripple-effect">
-                        分享到微博
-                    </li>
-                </a>
-            
-
-            
-                <a class="index_share-link" href="https://twitter.com/intent/tweet?text=高效偷懒研究中心&url=http://yoursite.com&via=Lazier" target="_blank">
-                    <li class="mdl-menu__item mdl-js-ripple-effect">
-                        分享到 Twitter
-                    </li>
-                </a>
-            
-
-            
-                <a class="index_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com" target="_blank">
-                    <li class="mdl-menu__item mdl-js-ripple-effect">
-                        分享到 Facebook
-                    </li>
-                </a>
-            
-
-            
-                <a class="index_share-link" href="https://plus.google.com/share?url=http://yoursite.com" target="_blank">
-                    <li class="mdl-menu__item mdl-js-ripple-effect">
-                        分享到 Google+
-                    </li>
-                </a>
-            
-
-            
-
-            
-
-            
-        </ul>
-    </div>
-</div>
-
-    
-    <div class="locate-thumbnail-symbol"></div>
-
-    <!-- Pin on top -->
-    
-
-    <!-- Normal Post -->
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2018/06/13/协程-gevent/">协程&amp;&amp;gevent</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            1. 协程...
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2018/06/13/协程-gevent/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Lazier's avatar">
-            </div>
-            <div>
-                <strong>Lazier</strong>
-                <span>6月 13, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-              <!-- Category -->
-              <span class="post_entry-category">
-                  <a class="post_category-link" href="/categories/Python/">Python</a>, <a class="post_category-link" href="/categories/Python/多线程/">多线程</a>, <a class="post_category-link" href="/categories/Python/多线程/协程/">协程</a>
-              </span>
-            
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2018/06/04/理解Python装饰器/">理解Python装饰器</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            1...
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2018/06/04/理解Python装饰器/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Lazier's avatar">
-            </div>
-            <div>
-                <strong>Lazier</strong>
-                <span>6月 04, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-              <!-- Category -->
-              <span class="post_entry-category">
-                  <a class="post_category-link" href="/categories/Python/">Python</a>, <a class="post_category-link" href="/categories/Python/函数式编程/">函数式编程</a>
-              </span>
-            
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2018/06/04/Python-metaclass研究/">Python metaclass研究</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2018/06/04/Python-metaclass研究/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Lazier's avatar">
-            </div>
-            <div>
-                <strong>Lazier</strong>
-                <span>6月 04, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-              <!-- Category -->
-              <span class="post_entry-category">
-                  <a class="post_category-link" href="/categories/Python/">Python</a>, <a class="post_category-link" href="/categories/Python/面向对象/">面向对象</a>
-              </span>
-            
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2018/06/01/Python下划线命名含义/">Python下划线命名含义</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            在使用Python定义类时通常会看到如下几种命名方式:
-
-以字母开头的变量, 如a, ...
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2018/06/01/Python下划线命名含义/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Lazier's avatar">
-            </div>
-            <div>
-                <strong>Lazier</strong>
-                <span>6月 01, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-              <!-- Category -->
-              <span class="post_entry-category">
-                  <a class="post_category-link" href="/categories/Python/">Python</a>
-              </span>
-            
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-
-    
-
-    
-        <script type="text/ls-javascript" id="thumbnail-script">
-    var randomNum;
-
-    var locatePost = $('.locate-thumbnail-symbol').next();
-    for(var i = 0; i < 10; i++) {
-        randomNum = Math.floor(Math.random() * 19 + 1);
-
-        locatePost.children('.post_thumbnail-random').attr('id', 'random_thumbnail-'+randomNum);
-        locatePost.children('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
-    $('.post_thumbnail-random').addClass('lazy');
-
-        locatePost = locatePost.next();
+    if (i !== -1) {
+      S.UI.simulate(decodeURI(action).substring(i + 3));
+    } else {
+      S.UI.simulate('#countdown 5');
+      // S.UI.simulate('Shape|Shifter|Type|to start|#rectangle|#countdown 3');
+      // S.UI.simulate('|Happy Birthday!雅文姐姐')
     }
-</script>
 
-    
-</div>
-
-
-                    
-                        <!-- Overlay For Active Sidebar -->
-<div class="sidebar-overlay"></div>
-
-<!-- Material sidebar -->
-<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
-    <div id="sidebar-main">
-        <!-- Sidebar Header -->
-        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
-    <!-- Top bar -->
-    <div class="top-bar"></div>
-
-    <!-- Sidebar toggle button -->
-    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
-        <i class="material-icons">clear_all</i>
-        <span class="mdl-button__ripple-container">
-            <span class="mdl-ripple">
-            </span>
-        </span>
-    </button>
-
-    <!-- Sidebar Avatar -->
-    <div class="sidebar-image">
-        <img src="/img/avatar.png" alt="Lazier's avatar">
-    </div>
-
-    <!-- Sidebar Email -->
-    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
-        lazierdk@qq.com
-        <b class="caret"></b>
-    </a>
-</div>
-
-
-        <!-- Sidebar Navigation  -->
-        <ul class="nav sidebar-nav">
-    <!-- User dropdown  -->
-    <li class="dropdown">
-        <ul id="settings-dropdown" class="dropdown-menu">
-            
-                <li>
-                    <a href="mailto:lazierdk@qq.com" target="_blank" title="Email Me">
-                        
-                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
-                        
-                        Email Me
-                    </a>
-                </li>
-            
-        </ul>
-    </li>
-
-    <!-- Homepage -->
-    
-        <li id="sidebar-first-li">
-            <a href="/">
-                
-                    <i class="material-icons sidebar-material-icons">home</i>
-                
-                主页
-            </a>
-        </li>
-        
-    
-
-    <!-- Archives  -->
-    
-        <li class="dropdown">
-            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
-                
-                    <i class="material-icons sidebar-material-icons">inbox</i>
-                
-                    归档
-                <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-            <li>
-                <a class="sidebar_archives-link" href="/archives/2018/06/">六月 2018<span class="sidebar_archives-count">4</span></a>
-            </ul>
-        </li>
-        
-    
-
-    <!-- Categories  -->
-    
-        <li class="dropdown">
-            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
-                
-                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
-                
-                分类
-                <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-                <li>
-                <a class="sidebar_archives-link" href="/categories/Python/">Python<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/Python/函数式编程/">函数式编程<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Python/多线程/">多线程<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Python/多线程/协程/">协程<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Python/面向对象/">面向对象<span class="sidebar_archives-count">1</span></a>
-            </ul>
-        </li>
-        
-            <li class="divider"></li>
-        
-    
-
-    <!-- Pages  -->
-    
-
-    <!-- Article Number  -->
-    
-        <li>
-            <a href="/archives">
-                文章总数
-                <span class="sidebar-badge">4</span>
-            </a>
-        </li>
-        
-    
-</ul>
-
-
-        <!-- Sidebar Footer -->
-        <!--
-I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
-If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
-It will not impact the appearance and can give developers a lot of support :)
-
-很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
-如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
-它不会影响美观并可以给开发者很大的支持和动力。 :)
--->
-
-<!-- Sidebar Divider -->
-
-
-<!-- Theme Material -->
-
-
-<!-- Help & Support -->
-<!--
-
--->
-
-<!-- Feedback -->
-<!--
-
--->
-
-<!-- About Theme -->
-<!--
-
--->
-
-    </div>
-
-    <!-- Sidebar Image -->
-    
-
-</aside>
-
-                    
-
-                    
-                        <!-- Footer Top Button -->
-                        <div id="back-to-top" class="toTop-wrap">
-    <a href="#top" class="toTop">
-        <i class="material-icons footer_top-i">expand_less</i>
-    </a>
-</div>
-
-                    
-
-                    <!--Footer-->
-<footer class="mdl-mini-footer" id="bottom">
-    
-        <!-- Paradox Footer Left Section -->
-        <div class="mdl-mini-footer--left-section sns-list">
-    <!-- Twitter -->
-    
-
-    <!-- Facebook -->
-    
-
-    <!-- Google + -->
-    
-
-    <!-- Weibo -->
-    
-
-    <!-- Instagram -->
-    
-
-    <!-- Tumblr -->
-    
-
-    <!-- Github -->
-    
-
-    <!-- LinkedIn -->
-    
-
-    <!-- Zhihu -->
-    
-
-    <!-- Bilibili -->
-    
-
-    <!-- Telegram -->
-    
-    
-    <!-- V2EX -->
-    
-</div>
-
-
-        <!--Copyright-->
-        <div id="copyright">
-            Copyright&nbsp;©<script type="text/javascript">var fd = new Date();document.write("&nbsp;" + fd.getFullYear() + "&nbsp;");</script>高效偷懒研究中心
-            
-        </div>
-
-        <!-- Paradox Footer Right Section -->
-
-        <!--
-        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
-        It will not impact the appearance and can give developers a lot of support :)
-
-        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
-        它不会影响美观并可以给开发者很大的支持。 :)
-        -->
-
-        <div class="mdl-mini-footer--right-section">
-            <div>
-                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
-                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
-            </div>
-        </div>
-    
-</footer>
-
-
-                    <!-- Import JS File -->
-
-    <script>lsloader.load("lazyload_js","/js/lazyload.min.js?wgjW/HuQG9JDgvPDPoRAng==", true)</script>
-
-
-
-    <script>lsloader.load("js_js","/js/js.min.js?V/53wGualMuiPM3xoetD5Q==", true)</script>
-
-
-
-    <script>lsloader.load("np_js","/js/nprogress.js?pl3Qhb9lvqR1FlyLUna1Yw==", true)</script>
-
-
-<script type="text/ls-javascript" id="NProgress-script">
-    NProgress.configure({
-        showSpinner: true
+    S.Drawing.loop(function () {
+      S.Shape.render();
     });
-    NProgress.start();
-    $('#nprogress .bar').css({
-        'background': '#29d'
-    });
-    $('#nprogress .peg').css({
-        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
-    });
-    $('#nprogress .spinner-icon').css({
-        'border-top-color': '#29d',
-        'border-left-color': '#29d'
-    });
-    setTimeout(function() {
-        NProgress.done();
-        $('.fade').removeClass('out');
-    }, 800);
-</script>
+  }
+};
 
 
+S.Drawing = (function () {
+  var canvas,
+      context,
+      renderFn
+      requestFrame = window.requestAnimationFrame       ||
+                     window.webkitRequestAnimationFrame ||
+                     window.mozRequestAnimationFrame    ||
+                     window.oRequestAnimationFrame      ||
+                     window.msRequestAnimationFrame     ||
+                     function(callback) {
+                       window.setTimeout(callback, 1000 / 60);
+                     };
+
+  return {
+    init: function (el) {
+      canvas = document.querySelector(el);
+      context = canvas.getContext('2d');
+      this.adjustCanvas();
+
+      window.addEventListener('resize', function (e) {
+        S.Drawing.adjustCanvas();
+      });
+    },
+
+    loop: function (fn) {
+      renderFn = !renderFn ? fn : renderFn;
+      this.clearFrame();
+      renderFn();
+      requestFrame.call(window, this.loop.bind(this));
+    },
+
+    adjustCanvas: function () {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    },
+
+    clearFrame: function () {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+    },
+
+    getArea: function () {
+      return { w: canvas.width, h: canvas.height };
+    },
+
+    drawCircle: function (p, c) {
+      context.fillStyle = c.render();
+      context.beginPath();
+      context.arc(p.x, p.y, p.z, 0, 2 * Math.PI, true);
+      context.closePath();
+      context.fill();
+    }
+  }
+}());
 
 
+S.UI = (function () {
+  var input = document.querySelector('.ui-input'),
+      ui = document.querySelector('.ui'),
+      // help = document.querySelector('.help'),
+      commands = document.querySelector('.commands'),
+      overlay = document.querySelector('.overlay'),
+      canvas = document.querySelector('.canvas'),
+      interval,
+      isTouch = false, //('ontouchstart' in window || navigator.msMaxTouchPoints),
+      currentAction,
+      resizeTimer,
+      time,
+      maxShapeSize = 30,
+      firstAction = true,
+      sequence = [],
+      cmd = '#';
 
+  function formatTime(date) {
+    var h = date.getHours(),
+        m = date.getMinutes(),
+    m = m < 10 ? '0' + m : m;
+    return h + ':' + m;
+  }
 
+  function getValue(value) {
+    return value && value.split(' ')[1];
+  }
 
+  function getAction(value) {
+    value = value && value.split(' ')[0];
+    return value && value[0] === cmd && value.substring(1);
+  }
 
+  function timedAction(fn, delay, max, reverse) {
+    clearInterval(interval);
+    currentAction = reverse ? max : 1;
+    fn(currentAction);
 
+    if (!max || (!reverse && currentAction < max) || (reverse && currentAction > 0)) {
+      interval = setInterval(function () {
+        currentAction = reverse ? currentAction - 1 : currentAction + 1;
+        fn(currentAction);
 
-
-
-    <!-- Swiftye -->
-    
-
-    <!-- Local Search-->
-    
-
-
-<!-- UC Browser Compatible -->
-<script>
-	var agent = navigator.userAgent.toLowerCase();
-	if(agent.indexOf('ucbrowser')>0) {
-		document.write('<link rel="stylesheet" href="/css/uc.css">');
-	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
-	}
-</script>
-
-<!-- Import prettify js  -->
-
-    
-
-
-
-<!-- Window Load -->
-<!-- add class for prettify -->
-<script type="text/ls-javascript" id="window-load">
-    $(window).on('load', function() {
-        // Post_Toc parent position fixed
-        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
-    });
-
-    
-        
-    
-    
-</script>
-
-<!-- MathJax Load-->
-
-
-<!-- Bing Background -->
-
-
-<script type="text/ls-javascript" id="lazy-load">
-    // Offer LazyLoad
-    queue.offer(function(){
-        $('.lazy').lazyload({
-            effect : 'show'
-        });
-    });
-
-    // Start Queue
-    $(document).ready(function(){
-        setInterval(function(){
-            queue.execNext();
-        },200);
-    });
-</script>
-
-<!-- Custom Footer -->
-
-
-
-<script>
-    (function(){
-        var scriptList = document.querySelectorAll('script[type="text/ls-javascript"]')
-
-        for (var i = 0; i < scriptList.length; ++i) {
-            var item = scriptList[i];
-            lsloader.runInlineScript(item.id,item.id);
+        if ((!reverse && max && currentAction === max) || (reverse && currentAction === 0)) {
+          clearInterval(interval);
         }
-    })()
-console.log('\n %c © Material Theme | Version: 1.5.2 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
-</script>
+      }, delay);
+    }
+  }
 
-                </main>
-            </div>
-        </body>
-    
+  function reset(destroy) {
+    clearInterval(interval);
+    sequence = [];
+    time = null;
+    destroy && S.Shape.switchShape(S.ShapeBuilder.letter(''));
+  }
+
+  function performAction(value) {
+    var action,
+        value,
+        current;
+
+    sequence = typeof(value) === 'object' ? value : sequence.concat(value.split('|'));
+    input.value = '';
+    checkInputWidth();
+
+    timedAction(function (index) {
+      current = sequence.shift();
+      action = getAction(current);
+      value = getValue(current);
+
+      switch (action) {
+        case 'countdown':
+          value = parseInt(value) || 10;
+          value = value > 0 ? value : 10;
+
+          timedAction(function (index) {
+            if (index === 0) {
+              if (sequence.length === 0) {
+                S.Shape.switchShape(S.ShapeBuilder.letter(''));
+              } else {
+                performAction(sequence);
+              }
+            } else {
+              S.Shape.switchShape(S.ShapeBuilder.letter(index), true);
+            }
+          }, 1000, value, true);
+          break;
+
+        case 'rectangle':
+          value = value && value.split('x');
+          value = (value && value.length === 2) ? value : [maxShapeSize, maxShapeSize / 2];
+
+          S.Shape.switchShape(S.ShapeBuilder.rectangle(Math.min(maxShapeSize, parseInt(value[0])), Math.min(maxShapeSize, parseInt(value[1]))));
+          break;
+
+        case 'circle':
+          value = parseInt(value) || maxShapeSize;
+          value = Math.min(value, maxShapeSize);
+          S.Shape.switchShape(S.ShapeBuilder.circle(value));
+          break;
+
+        case 'time':
+          var t = formatTime(new Date());
+
+          if (sequence.length > 0) {
+            S.Shape.switchShape(S.ShapeBuilder.letter(t));
+          } else {
+            timedAction(function () {
+              t = formatTime(new Date());
+              if (t !== time) {
+                time = t;
+                S.Shape.switchShape(S.ShapeBuilder.letter(time));
+              }
+            }, 1000);
+          }
+          break;
+
+        default:
+          S.Shape.switchShape(S.ShapeBuilder.letter(current[0] === cmd ? 'What?' : current));
+      }
+    }, 2000, sequence.length);
+  }
+
+  function checkInputWidth(e) {
+    if (input.value.length > 18) {
+      ui.classList.add('ui--wide');
+    } else {
+      ui.classList.remove('ui--wide');
+    }
+
+    if (firstAction && input.value.length > 0) {
+      ui.classList.add('ui--enter');
+    } else {
+      ui.classList.remove('ui--enter');
+    }
+  }
+
+  function bindEvents() {
+    document.body.addEventListener('keydown', function (e) {
+      input.focus();
+
+      if (e.keyCode === 13) {
+        firstAction = false;
+        reset();
+        performAction(input.value);
+      }
+    });
+
+    input.addEventListener('input', checkInputWidth);
+    input.addEventListener('change', checkInputWidth);
+    input.addEventListener('focus', checkInputWidth);
+
+    canvas.addEventListener('click', function (e) {
+      overlay.classList.remove('overlay--visible');
+    });
+  }
+
+  function init() {
+    bindEvents();
+    input.focus();
+    isTouch && document.body.classList.add('touch');
+  }
+
+  // Init
+  init();
+
+  return {
+    simulate: function (action) {
+      performAction(action);
+    }
+  }
+}());
+
+
+S.Point = function (args) {
+  this.x = args.x;
+  this.y = args.y;
+  this.z = args.z;
+  this.a = args.a;
+  this.h = args.h;
+};
+
+
+S.Color = function (r, g, b, a) {
+  this.r = r;
+  this.g = g;
+  this.b = b;
+  this.a = a;
+};
+
+S.Color.prototype = {
+  render: function () {
+    return 'rgba(' + this.r + ',' +  + this.g + ',' + this.b + ',' + this.a + ')';
+  }
+};
+
+
+S.Dot = function (x, y) {
+  this.p = new S.Point({
+    x: x,
+    y: y,
+    z: 5,
+    a: 1,
+    h: 0
+  });
+
+  this.e = 0.07;
+  this.s = true;
+
+  this.c = new S.Color(255, 255, 255, this.p.a);
+
+  this.t = this.clone();
+  this.q = [];
+};
+
+S.Dot.prototype = {
+  clone: function () {
+    return new S.Point({
+      x: this.x,
+      y: this.y,
+      z: this.z,
+      a: this.a,
+      h: this.h
+    });
+  },
+
+  _draw: function () {
+    this.c.a = this.p.a;
+    S.Drawing.drawCircle(this.p, this.c);
+  },
+
+  _moveTowards: function (n) {
+    var details = this.distanceTo(n, true),
+        dx = details[0],
+        dy = details[1],
+        d = details[2],
+        e = this.e * d;
+
+    if (this.p.h === -1) {
+      this.p.x = n.x;
+      this.p.y = n.y;
+      return true;
+    }
+
+    if (d > 1) {
+      this.p.x -= ((dx / d) * e);
+      this.p.y -= ((dy / d) * e);
+    } else {
+      if (this.p.h > 0) {
+        this.p.h--;
+      } else {
+        return true;
+      }
+    }
+
+    return false;
+  },
+
+  _update: function () {
+    if (this._moveTowards(this.t)) {
+      var p = this.q.shift();
+
+      if (p) {
+        this.t.x = p.x || this.p.x;
+        this.t.y = p.y || this.p.y;
+        this.t.z = p.z || this.p.z;
+        this.t.a = p.a || this.p.a;
+        this.p.h = p.h || 0;
+      } else {
+        if (this.s) {
+          this.p.x -= Math.sin(Math.random() * 3.142);
+          this.p.y -= Math.sin(Math.random() * 3.142);
+        } else {
+          this.move(new S.Point({
+            x: this.p.x + (Math.random() * 50) - 25,
+            y: this.p.y + (Math.random() * 50) - 25,
+          }));
+        }
+      }
+    }
+
+    d = this.p.a - this.t.a;
+    this.p.a = Math.max(0.1, this.p.a - (d * 0.05));
+    d = this.p.z - this.t.z;
+    this.p.z = Math.max(1, this.p.z - (d * 0.05));
+  },
+
+  distanceTo: function (n, details) {
+    var dx = this.p.x - n.x,
+        dy = this.p.y - n.y,
+        d = Math.sqrt(dx * dx + dy * dy);
+
+    return details ? [dx, dy, d] : d;
+  },
+
+  move: function (p, avoidStatic) {
+    if (!avoidStatic || (avoidStatic && this.distanceTo(p) > 1)) {
+      this.q.push(p);
+    }
+  },
+
+  render: function () {
+    this._update();
+    this._draw();
+  }
+}
+
+
+S.ShapeBuilder = (function () {
+  var gap = 13,
+      shapeCanvas = document.createElement('canvas'),
+      shapeContext = shapeCanvas.getContext('2d'),
+      fontSize = 500,
+      fontFamily = 'Avenir, Helvetica Neue, Helvetica, Arial, sans-serif';
+
+  function fit() {
+    shapeCanvas.width = Math.floor(window.innerWidth / gap) * gap;
+    shapeCanvas.height = Math.floor(window.innerHeight / gap) * gap;
+    shapeContext.fillStyle = 'red';
+    shapeContext.textBaseline = 'middle';
+    shapeContext.textAlign = 'center';
+  }
+
+  function processCanvas() {
+    var pixels = shapeContext.getImageData(0, 0, shapeCanvas.width, shapeCanvas.height).data;
+        dots = [],
+        pixels,
+        x = 0,
+        y = 0,
+        fx = shapeCanvas.width,
+        fy = shapeCanvas.height,
+        w = 0,
+        h = 0;
+
+    for (var p = 0; p < pixels.length; p += (4 * gap)) {
+      if (pixels[p + 3] > 0) {
+        dots.push(new S.Point({
+          x: x,
+          y: y
+        }));
+
+        w = x > w ? x : w;
+        h = y > h ? y : h;
+        fx = x < fx ? x : fx;
+        fy = y < fy ? y : fy;
+      }
+
+      x += gap;
+
+      if (x >= shapeCanvas.width) {
+        x = 0;
+        y += gap;
+        p += gap * 4 * shapeCanvas.width;
+      }
+    }
+
+    return { dots: dots, w: w + fx, h: h + fy };
+  }
+
+  function setFontSize(s) {
+    shapeContext.font = 'bold ' + s + 'px ' + fontFamily;
+  }
+
+  function isNumber(n) {
+    return !isNaN(parseFloat(n)) && isFinite(n);
+  }
+
+  function init() {
+    fit();
+    window.addEventListener('resize', fit);
+  }
+
+  // Init
+  init();
+
+  return {
+    imageFile: function (url, callback) {
+      var image = new Image(),
+          a = S.Drawing.getArea();
+
+      image.onload = function () {
+        shapeContext.clearRect(0, 0, shapeCanvas.width, shapeCanvas.height);
+        shapeContext.drawImage(this, 0, 0, a.h * 0.6, a.h * 0.6);
+        callback(processCanvas());
+      };
+
+      image.onerror = function () {
+        callback(S.ShapeBuilder.letter('What?'));
+      }
+
+      image.src = url;
+    },
+
+    circle: function (d) {
+      var r = Math.max(0, d) / 2;
+      shapeContext.clearRect(0, 0, shapeCanvas.width, shapeCanvas.height);
+      shapeContext.beginPath();
+      shapeContext.arc(r * gap, r * gap, r * gap, 0, 2 * Math.PI, false);
+      shapeContext.fill();
+      shapeContext.closePath();
+
+      return processCanvas();
+    },
+
+    letter: function (l) {
+      var s = 0;
+
+      setFontSize(fontSize);
+      s = Math.min(fontSize,
+                  (shapeCanvas.width / shapeContext.measureText(l).width) * 0.8 * fontSize, 
+                  (shapeCanvas.height / fontSize) * (isNumber(l) ? 1 : 0.45) * fontSize);
+      setFontSize(s);
+
+      shapeContext.clearRect(0, 0, shapeCanvas.width, shapeCanvas.height);
+      shapeContext.fillText(l, shapeCanvas.width / 2, shapeCanvas.height / 2);
+
+      return processCanvas();
+    },
+
+    rectangle: function (w, h) {
+      var dots = [],
+          width = gap * w,
+          height = gap * h;
+
+      for (var y = 0; y < height; y += gap) {
+        for (var x = 0; x < width; x += gap) {
+          dots.push(new S.Point({
+            x: x,
+            y: y,
+          }));
+        }
+      }
+
+      return { dots: dots, w: width, h: height };
+    }
+  };
+}());
+
+
+S.Shape = (function () {
+  var dots = [],
+      width = 0,
+      height = 0,
+      cx = 0,
+      cy = 0;
+
+  function compensate() {
+    var a = S.Drawing.getArea();
+
+    cx = a.w / 2 - width / 2;
+    cy = a.h / 2 - height / 2;
+  }
+
+  return {
+    shuffleIdle: function () {
+      var a = S.Drawing.getArea();
+
+      for (var d = 0; d < dots.length; d++) {
+        if (!dots[d].s) {
+          dots[d].move({
+            x: Math.random() * a.w,
+            y: Math.random() * a.h
+          });
+        }
+      }
+    },
+
+    switchShape: function (n, fast) {
+      var size,
+          a = S.Drawing.getArea();
+
+      width = n.w;
+      height = n.h;
+
+      compensate();
+
+      if (n.dots.length > dots.length) {
+        size = n.dots.length - dots.length;
+        for (var d = 1; d <= size; d++) {
+          dots.push(new S.Dot(a.w / 2, a.h / 2));
+        }
+      }
+
+      var d = 0,
+          i = 0;
+
+      while (n.dots.length > 0) {
+        i = Math.floor(Math.random() * n.dots.length);
+        dots[d].e = fast ? 0.25 : (dots[d].s ? 0.14 : 0.11);
+
+        if (dots[d].s) {
+          dots[d].move(new S.Point({
+            z: Math.random() * 20 + 10,
+            a: Math.random(),
+            h: 18
+          }));
+        } else {
+          dots[d].move(new S.Point({
+            z: Math.random() * 5 + 5,
+            h: fast ? 18 : 30
+          }));
+        }
+
+        dots[d].s = true;
+        dots[d].move(new S.Point({
+          x: n.dots[i].x + cx,
+          y: n.dots[i].y + cy,
+          a: 1,
+          z: 5,
+          h: 0
+        }));
+
+        n.dots = n.dots.slice(0, i).concat(n.dots.slice(i + 1));
+        d++;
+      }
+
+      for (var i = d; i < dots.length; i++) {
+        if (dots[i].s) {
+          dots[i].move(new S.Point({
+            z: Math.random() * 20 + 10,
+            a: Math.random(),
+            h: 20
+          }));
+
+          dots[i].s = false;
+          dots[i].e = 0.04;
+          dots[i].move(new S.Point({ 
+            x: Math.random() * a.w,
+            y: Math.random() * a.h,
+            a: 0.3, //.4
+            z: Math.random() * 4,
+            h: 0
+          }));
+        }
+      }
+    },
+
+    render: function () {
+      for (var d = 0; d < dots.length; d++) {
+        dots[d].render();
+      }
+    }
+  }
+}());
+
+
+S.init();
+
+        </script>
+
+        <script>
+          setTimeout(() => {
+            S.UI.simulate("Happy Birthday!");
+          }, 5000);
+          setTimeout(() => {
+            S.UI.simulate("永远18岁");
+          }, 8000);
+        </script>
+    </body>
 </html>
